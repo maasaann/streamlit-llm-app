@@ -3,7 +3,7 @@
 
 import streamlit as st
 from langchain_openai import ChatOpenAI
-from langchain.schema import SystemMessage, HumanMessage, AIMessage 
+from langchain.schema import SystemMessage, HumanMessage
 
 llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
 
