@@ -1,57 +1,47 @@
 from dotenv import load_dotenv
 load_dotenv()
+
 import streamlit as st
 from langchain_openai import ChatOpenAI
-from langchain.schema import SystemMessage, HumanMessage, AIMessage
+from langchain.schema import SystemMessage, HumanMessage, AIMessage 
 
 llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
 
-st.title("Lesson 21 Streamlitを活用したWebアプリ開発")
-st.title("Chapter 6 【提出課題】LLM機能を搭載したWebアプリを開発しよう")
-
-st.write("##### LLMタイプ①: あああ")
-st.write("##### LLMタイプ②: いいい")
+st.title("21-6 【提出課題】LLM機能を搭載したWebアプリを開発しよう")
+st.write("")
+st.write("##### LLMタイプ①: 旅行プランを考えてほしい")
+st.write("##### LLMタイプ②: 観光名所を教えてほしい")
+st.write("")
 
 selected_item = st.radio(
     "動作モードを選択してください。",
-    ["あああ", "いいい"]
+    ["旅行プランを考えてほしい", "観光名所を教えてほしい"]
 )
+st.write("")
+input_message = st.text_input(label="旅行したい目的の都市名を入力してください。")
 
-st.divider()
+if st.button("質問する"):
 
-if selected_item == "あああ":
-    input_message = st.text_input(label="質問を入力")
-
-    messages = [
-    SystemMessage(content="You are a helpful assistant."),
-    HumanMessage(content=input_message),
-    ]
-
-    result = llm(messages)
-    st.write(result.content)
-
-else:
-    height = st.text_input(label="身長（cm）を入力してください。")
-    weight = st.text_input(label="体重（kg）を入力してください。")
-
-if st.button("実行"):
     st.divider()
 
-    if selected_item == "あああ":
-        if input_message:
-            st.write(f"文字数: **{text_count}**")
+    if selected_item == "旅行プランを考えてほしい":
 
-        else:
-            st.error("カウント対象となるテキストを入力してから「実行」ボタンを押してください。")
+        messages = [
+        SystemMessage(content="あなたは旅行プランを考えるプロです。100文字程度で回答してください。"),
+        HumanMessage(content=input_message),
+        ]
+
+        result = llm(messages)
+
+        st.write(result.content)
 
     else:
-        if height and weight:
-            try:
-                bmi = round(int(weight) / ((int(height)/100) ** 2), 1)
-                st.write(f"BMI値: {bmi}")
 
-            except ValueError as e:
-                st.error("身長と体重は数値で入力してください。")
+        messages = [
+            SystemMessage(content="あなたは観光名所を教えるプロです。100文字程度で回答してください。"),
+            HumanMessage(content=input_message),
+        ]
 
-        else:
-            st.error("身長と体重をどちらも入力してください。")
+        result = llm(messages)
+
+        st.write(result.content)
