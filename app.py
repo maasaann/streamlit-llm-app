@@ -7,7 +7,7 @@ from langchain.schema import SystemMessage, HumanMessage
 
 llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
 
-st.title("##### 21-6 【提出課題】LLM機能を搭載したWebアプリを開発しよう")
+st.write("##### 21-6 【提出課題】LLM機能を搭載したWebアプリを開発しよう")
 st.write("")
 st.write("##### LLMタイプ①: 旅行プランを考えてほしい")
 st.write("##### LLMタイプ②: 観光名所を教えてほしい")
