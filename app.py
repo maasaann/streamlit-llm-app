@@ -11,7 +11,6 @@ st.write("##### 21-6 【提出課題】LLM機能を搭載したWebアプリ�
 st.write("")
 st.write("##### LLMタイプ①: 旅行プランを考えてほしい")
 st.write("##### LLMタイプ②: 観光名所を教えてほしい")
-st.write("##### テスト")
 st.write("")
 
 selected_item = st.radio(
