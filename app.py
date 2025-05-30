@@ -17,7 +17,9 @@ selected_item = st.radio(
     "LLMタイプを選択してください。",
     ["旅行プランを考えてほしい", "観光名所を教えてほしい"]
 )
+
 st.write("")
+
 input_message = st.text_input(label="旅行したい目的の【都市名】を入力してください。")
 
 if st.button("質問する"):
